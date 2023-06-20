@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatefulWidget {
@@ -70,6 +71,10 @@ class _LoginViewState extends State<LoginView> {
                   print('Wrong password');
                 }
               }
+              Firebase.initializeApp();
+              final user = FirebaseAuth.instance.currentUser;
+              print(user);
+              print(user?.email);
             },
             child: const Text('Login'),
           ),
