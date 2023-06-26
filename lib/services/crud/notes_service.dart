@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mynotes/extensions/list/filter.dart';
 import 'package:mynotes/services/crud/crud_exceptions.dart';
 import 'package:sqflite/sqflite.dart';
@@ -73,8 +72,7 @@ class NotesService {
     // make sure note exists
     await getNote(id: note.id);
 
-    //update DB
-
+    // update DB
     final updatesCount = await db.update(
       noteTable,
       {
@@ -339,21 +337,21 @@ class DatabaseNote {
 const dbName = 'notes.db';
 const noteTable = 'note';
 const userTable = 'user';
-const idColumn = "id";
+const idColumn = 'id';
 const emailColumn = 'email';
 const userIdColumn = 'user_id';
 const textColumn = 'text';
 const isSyncedWithCloudColumn = 'is_synced_with_cloud';
 const createUserTable = '''CREATE TABLE IF NOT EXISTS "user" (
-	      "id"	INTEGER NOT NULL,
-	      "email"	TEXT NOT NULL UNIQUE,
-	      PRIMARY KEY("id" AUTOINCREMENT)
+        "id"	INTEGER NOT NULL,
+        "email"	TEXT NOT NULL UNIQUE,
+        PRIMARY KEY("id" AUTOINCREMENT)
       );''';
 const createNoteTable = '''CREATE TABLE IF NOT EXISTS "note" (
-	      "id"	INTEGER NOT NULL,
-	      "user_id"	INTEGER NOT NULL,
-	      "text"	TEXT,
-	      "is_synced_with_cloud"	INTEGER NOT NULL DEFAULT 0,
-	      FOREIGN KEY("user_id") REFERENCES "user"("id"),
-	      PRIMARY KEY("id" AUTOINCREMENT)
+        "id"	INTEGER NOT NULL,
+        "user_id"	INTEGER NOT NULL,
+        "text"	TEXT,
+        "is_synced_with_cloud"	INTEGER NOT NULL DEFAULT 0,
+        FOREIGN KEY("user_id") REFERENCES "user"("id"),
+        PRIMARY KEY("id" AUTOINCREMENT)
       );''';
